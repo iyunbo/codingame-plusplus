@@ -62,7 +62,7 @@ const vector<string> split(const string &s, char delim) {
     return elems;
 }
 
-const string &replace(const string &str, const string &from, const string &to) {
+const string replace(const string &str, const string &from, const string &to) {
     string newstr = str;
     size_t start_pos = newstr.find(from);
     if (start_pos == string::npos)

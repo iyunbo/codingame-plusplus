@@ -25,7 +25,7 @@ const vector<string> &split(const string &s, char delim, vector<string> &elems);
 
 const vector<string> split(const string &s, char delim);
 
-const string &replace(const string &str, const string &from, const string &to);
+const string replace(const string &str, const string &from, const string &to);
 
 const double toRdians(const string &degree);
 

@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 2.8.8)
 set(PROJECT_NAME codingame)
+set(PROJECT_TEST_NAME ${PROJECT_NAME}_test)
 project(${PROJECT_NAME} C CXX)
 
 find_package(Threads REQUIRED)
@@ -7,6 +8,8 @@ find_package(Threads REQUIRED)
 if (CMAKE_COMPILER_IS_GNUCXX)
     add_definitions(-Wall -ansi -Wno-deprecated -pthread)
 endif ()
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-c++11-extensions -Wno-c++11-long-long")
 
 if (MSVC)
     #vc 2012 fix for vararg templates
@@ -33,9 +36,8 @@ add_subdirectory(${EXT_PROJECTS_DIR}/gtest)
 #-------------------
 # Test
 #-------------------
-add_definitions(${MSVC_COMPILER_DEFS})
+add_definitions(${CMAKE_CXX_FLAGS})
 enable_testing()
-set(PROJECT_TEST_NAME ${PROJECT_NAME}_test)
 include_directories(${GTEST_INCLUDE_DIRS} ${COMMON_INCLUDES})
 
 file(GLOB TEST_SRC_FILES ${PROJECT_SOURCE_DIR}/test/*.cpp)
