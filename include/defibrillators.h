@@ -30,3 +30,5 @@ const string replace(const string &str, const string &from, const string &to);
 const double toRdians(const string &degree);
 
 const Location nearestLocation(const Location &target, const vector<Location> &locations);
+
+void findNearest(Location &nearest, double &min, const Location &target, const Location &loc);

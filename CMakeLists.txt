@@ -10,6 +10,7 @@ if (CMAKE_COMPILER_IS_GNUCXX)
 endif ()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-c++11-extensions -Wno-c++11-long-long")
+add_definitions("-std=c++11")
 
 if (MSVC)
     #vc 2012 fix for vararg templates

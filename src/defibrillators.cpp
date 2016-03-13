@@ -5,10 +5,8 @@
 #include <float.h>
 
 const vector<Location> toLocations(const vector<string> &defibrillators) {
-    vector<Location> locations;
-    for (string defibrillator : defibrillators) {
-        locations.push_back(toLocation(defibrillator));
-    }
+    vector<Location> locations(defibrillators.size());
+    transform(defibrillators.begin(), defibrillators.end(), locations.begin(), toLocation);
     return locations;
 }
 
@@ -18,18 +16,23 @@ const string nearest(const vector<string> &defib_list, const string &lon, const 
     return nearestLocation(target, locations).name;
 }
 
+
 const Location nearestLocation(const Location &target, const vector<Location> &locations) {
-    Location nearest = {0.0, 0.0, "N/A"};
     double min = DBL_MAX;
-    double d;
-    for (Location loc : locations) {
-        d = distance(target, loc);
-        if (d < min) {
-            min = d;
-            nearest = loc;
-        }
-    }
+    Location nearest;
+    auto lambda = [&](Location loc) {
+        findNearest(nearest, min, target, loc);
+    };
+    for_each(locations.begin(), locations.end(), lambda);
     return nearest;
+}
+
+void findNearest(Location &nearest, double &min, const Location &target, const Location &loc) {
+    double d = distance(target, loc);
+    if (d < min) {
+        min = d;
+        nearest = loc;
+    }
 }
 
 const double distance(const Location &a, const Location &b) {
@@ -63,10 +66,9 @@ const vector<string> split(const string &s, char delim) {
 }
 
 const string replace(const string &str, const string &from, const string &to) {
-    string newstr = str;
-    size_t start_pos = newstr.find(from);
-    if (start_pos == string::npos)
-        return newstr;
-    newstr.replace(start_pos, from.length(), to);
-    return newstr;
+    string new_str = str;
+    const size_t start_pos = new_str.find(from);
+    if (start_pos == string::npos) return new_str;
+    new_str.replace(start_pos, from.length(), to);
+    return new_str;
 }
