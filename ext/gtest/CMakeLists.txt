@@ -9,9 +9,11 @@ ExternalProject_Add(googletest
                -DCMAKE_CXX_FLAGS=${MSVC_COMPILER_DEFS}
                -Dgtest_force_shared_crt=ON
                -DBUILD_GTEST=ON
-     PREFIX "${CMAKE_CURRENT_BINARY_DIR}"
+               -Wc++11-extensions
+        PREFIX "${CMAKE_CURRENT_BINARY_DIR}"
 # Disable install step
-    INSTALL_COMMAND ""
+        INSTALL_COMMAND ""
+        UPDATE_DISCONNECTED 1
 )
 
 # Specify include dir
