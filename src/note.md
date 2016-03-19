@@ -22,7 +22,7 @@ A dangling pointer is a pointer that points to invalid data or to data which is 
     // object2 points to an object which has been removed from stack after exiting the function
 ```
 
-##### make_shared<Object>() vs shared_ptr(new Object()) #####
+##### `make_shared<Object>()` vs `shared_ptr(new Object())` #####
 
 - exception safety
 - one allocation of memory: control block at the space heap space of managed object
