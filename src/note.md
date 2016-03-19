@@ -11,7 +11,7 @@ A dangling pointer is a pointer that points to invalid data or to data which is 
     // now object2 points to something which is not valid anymore
 ```
 
-```
+``` c++
     
     Object *method() {
       Object object;
