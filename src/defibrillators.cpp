@@ -42,7 +42,7 @@ const double distance(const Location &a, const Location &b) {
 }
 
 const Location toLocation(const string &line) {
-    vector<string> fields = split(line, ';');
+    const vector<string> fields = split(line, ';');
     return (Location) {toRdians(fields[4]), toRdians(fields[5]), fields[1]};
 }
 
