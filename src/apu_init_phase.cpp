@@ -17,32 +17,25 @@ const int closest_bottom(const vector<string> &grids, const int &x, const int &y
         return closest_bottom(grids, x, y + 1);
 }
 
-
-const string to_str(int number) {
-    stringstream out;
-    out << number;
-    return out.str();
-}
-
 const vector<string> closest_neighbors(const vector<string> &grids) {
     vector<string> answer;
     for (int x = 0; x < grids[0].size(); x++) {
         for (int y = 0; y < grids.size(); y++) {
             if (grids[y][x] == '0') {
                 string line("");
-                line += to_str(x);
+                line += to_string(x);
                 line += " ";
-                line += to_str(y);
+                line += to_string(y);
                 line += " ";
                 int right_neighbor = closest_right(grids[y], x);
-                line += to_str(right_neighbor);
+                line += to_string(right_neighbor);
                 line += " ";
-                line += to_str(right_neighbor == -1 ? -1 : y);
+                line += to_string(right_neighbor == -1 ? -1 : y);
                 line += " ";
                 int bottom_neighbor = closest_bottom(grids, x, y);
-                line += to_str(bottom_neighbor == -1 ? -1 : x);
+                line += to_string(bottom_neighbor == -1 ? -1 : x);
                 line += " ";
-                line += to_str(bottom_neighbor);
+                line += to_string(bottom_neighbor);
                 answer.push_back(line);
             }
         }
